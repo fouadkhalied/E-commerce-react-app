@@ -9,10 +9,13 @@ import React from 'react';
 import './header.css';
 import { Container } from 'react-bootstrap';
 import data from '../Pages/labtopsjson/dell.json'
+import { useDispatch, useSelector } from 'react-redux';
+import { deleteProduct, deleteProduct123 } from '../Components/redux/Actions/action-types';
 
 function Cart() {
-   const x = JSON.parse(localStorage.getItem("productsID"));
+   const x = useSelector(state => state.x3);
    var total = 0;
+   const dispatch1 = useDispatch();
    return (
       <div className='cart-div text-center'>
          <Container>
@@ -33,6 +36,7 @@ function Cart() {
                      <h2>Brand : <h3 style={{display : 'inline'}}>{data[obj].brand}</h3></h2>
                      <h2>Model : <h3 style={{display : 'inline'}}>{data[obj].model}</h3></h2>
                      <h2>Price : <h3 style={{display : 'inline'}}>{data[obj].price}$</h3></h2>
+                     <button onClick={()=>{dispatch1({type : deleteProduct123 , index123:data[obj].id});console.log(data[obj].id);}} className='btn btn-danger'>Remove item</button>
                      </div>
                   </div>
                })
